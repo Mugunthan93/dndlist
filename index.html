@@ -6,10 +6,227 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>DashboardDND</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.8/angular.min.js"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/angular-drag-and-drop-lists/2.1.0/angular-drag-and-drop-lists.js">
+    </script>
 </head>
 
 <body>
+    <div ng-app="dashboardDND" ng-controller="DNDController">
 
+        <div class="col-md-12">
+            <div class="row">
+                <div ng-repeat="">
+                    <ul>
+                        <li>
+
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        angular.module('dashboardDND', ['dndLists'])
+            .controller('DNDController', DNDController);
+
+        DNDController.$inject = ['$scope'];
+
+        function DNDController($scope) {
+
+            $scope.models = {
+                selected: null,
+                lists: {
+                    "A": [{
+                        "label": "Item A1"
+                    }]
+                }
+            }
+
+            $scope.models2 = {
+                selected: null,
+                lists: [{
+                        label: "Men",
+                        allowedTypes: ['man'],
+                        max: 4,
+                        people: [{
+                                name: "Bob",
+                                type: "man"
+                            },
+                            {
+                                name: "Charlie",
+                                type: "man"
+                            },
+                            {
+                                name: "Dave",
+                                type: "man"
+                            }
+                        ]
+                    },
+                    {
+                        label: "Women",
+                        allowedTypes: ['woman'],
+                        max: 4,
+                        people: [{
+                                name: "Alice",
+                                type: "woman"
+                            },
+                            {
+                                name: "Eve",
+                                type: "woman"
+                            },
+                            {
+                                name: "Peggy",
+                                type: "woman"
+                            }
+                        ]
+                    },
+                    {
+                        label: "People",
+                        allowedTypes: ['man', 'woman'],
+                        max: 6,
+                        people: [{
+                                name: "Frank",
+                                type: "man"
+                            },
+                            {
+                                name: "Mallory",
+                                type: "woman"
+                            },
+                            {
+                                name: "Alex",
+                                type: "unknown"
+                            },
+                            {
+                                name: "Oscar",
+                                type: "man"
+                            },
+                            {
+                                name: "Wendy",
+                                type: "woman"
+                            }
+                        ]
+                    }
+                ]
+            }
+
+            $scope.models3 = {
+                selected: null,
+                templates: [{
+                        type: "item",
+                        id: 2
+                    },
+                    {
+                        type: "container",
+                        id: 1,
+                        columns: [
+                            [],
+                            []
+                        ]
+                    }
+                ],
+                dropzones: {
+                    "A": [{
+                            "type": "container",
+                            "id": 1,
+                            "columns": [
+                                [{
+                                        "type": "item",
+                                        "id": "1"
+                                    },
+                                    {
+                                        "type": "item",
+                                        "id": "2"
+                                    }
+                                ],
+                                [{
+                                    "type": "item",
+                                    "id": "3"
+                                }]
+                            ]
+                        },
+                        {
+                            "type": "item",
+                            "id": "4"
+                        },
+                        {
+                            "type": "item",
+                            "id": "5"
+                        },
+                        {
+                            "type": "item",
+                            "id": "6"
+                        }
+                    ],
+                    "B": [{
+                            "type": "item",
+                            "id": 7
+                        },
+                        {
+                            "type": "item",
+                            "id": "8"
+                        },
+                        {
+                            "type": "container",
+                            "id": "2",
+                            "columns": [
+                                [{
+                                        "type": "item",
+                                        "id": "9"
+                                    },
+                                    {
+                                        "type": "item",
+                                        "id": "10"
+                                    },
+                                    {
+                                        "type": "item",
+                                        "id": "11"
+                                    }
+                                ],
+                                [{
+                                        "type": "item",
+                                        "id": "12"
+                                    },
+                                    {
+                                        "type": "container",
+                                        "id": "3",
+                                        "columns": [
+                                            [{
+                                                "type": "item",
+                                                "id": "13"
+                                            }],
+                                            [{
+                                                "type": "item",
+                                                "id": "14"
+                                            }]
+                                        ]
+                                    },
+                                    {
+                                        "type": "item",
+                                        "id": "15"
+                                    },
+                                    {
+                                        "type": "item",
+                                        "id": "16"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "item",
+                            "id": 16
+                        }
+                    ]
+                }
+            }
+
+        }
+    </script>
 </body>
 
 </html>
