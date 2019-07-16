@@ -25,10 +25,14 @@
                     <h2>Drag and Drop</h2>
                     <ul dnd-list="list.divSection" dnd-allowed-types="list.allowedTypes"
                         dnd-disable-if="list.divSection.length >= list.max" dnd-external-sources="" dnd-dragover=""
-                        dnd-drop="" dnd-horizontal-list="" dnd-inserted="">
-                        <li ng-repeat="item in list.divSection" dnd-draggable="item" dnd-effect-allowed=""
-                            dnd-moved="list.divSection.splice($index,1)" dnd-selected="" dnd-type="item.type"
-                            dnd-disable-if="item.type == 'unknown'" dnd-callback="" dnd-dragstart="" dnd-dragend="">
+                        dnd-drop="" dnd-horizontal-list="true" dnd-inserted="">
+                        <!-- dnd-dragover="dragOver(index, external, type, callback)" -->
+                        <!-- dnd-drop="drop(index, external, type, callback)" -->
+                        <!-- dnd-inserted="insert('inserted at', index, external,type)" -->
+                        <li ng-repeat="item in list.divSection" dnd-draggable="item" dnd-effect-allowed="move"
+                            dnd-moved="list.divSection.splice($index,1)" dnd-selected="models1.selected = item"
+                            dnd-type="item.type" dnd-disable-if="item.type == 'unknown'" dnd-callback=""
+                            dnd-dragstart="dragStart(list,event)" dnd-dragend="dragEnd('dragEnd String',dropEffect)">
                             {{item.name}}
                         </li>
                     </ul>
@@ -102,6 +106,27 @@
                     }
                 ]
             }
+
+            $scope.dragOver = function (index, external, type, callback) {
+                console.log(index, external, type, callback);
+            }
+
+            $scope.drop = function (index, item, external, type) {
+                console.log(index, item, external, type);
+            }
+
+            $scope.insert = function (insertedString, index, external, type) {
+                console.log(insertedString, index, external, type);
+            }
+
+            $scope.dragStart = function (list, event) {
+                console.log(list, event);
+            }
+
+            $scope.dragEnd = function (dragEndString, dropEffect) {
+                console.log(dragEndString, dropEffect);
+            }
+
         }
     </script>
 </body>
