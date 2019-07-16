@@ -23,16 +23,23 @@
             <div class="row">
                 <div ng-repeat="list in models1.lists" class="nestedDemo simpleDemo typesDemo">
                     <h2>Drag and Drop</h2>
+
                     <ul dnd-list="list.divSection" dnd-allowed-types="list.allowedTypes"
-                        dnd-disable-if="list.divSection.length >= list.max" dnd-external-sources="" dnd-dragover=""
-                        dnd-drop="" dnd-horizontal-list="true" dnd-inserted="">
-                        <!-- dnd-dragover="dragOver(index, external, type, callback)" -->
-                        <!-- dnd-drop="drop(index, external, type, callback)" -->
-                        <!-- dnd-inserted="insert('inserted at', index, external,type)" -->
+                        dnd-disable-if="list.divSection.length >= list.max" dnd-external-sources="true"
+                        dnd-dragover="dragOver(event,index, type, external, dropEffect, callback)" dnd-drop="drop(index,
+                        external, type, callback)" dnd-horizontal-list="true"
+                        dnd-inserted="insert('inserted at', index, external,type)">
+                        <!-- dnd-dragover="dragOver(event,index,  type, external,  dropEffect, callback)"
+                        dnd-drop="drop(index, external, type, callback)"
+                        dnd-inserted="insert('inserted at', index, external,type)" -->
+
                         <li ng-repeat="item in list.divSection" dnd-draggable="item" dnd-effect-allowed="move"
-                            dnd-moved="list.divSection.splice($index,1)" dnd-selected="models1.selected = item"
-                            dnd-type="item.type" dnd-disable-if="item.type == 'unknown'" dnd-callback=""
+                            dnd-moved="list.divSection.splice($index,1)" dnd-copied="" dnd-linked="" dnd-canceled=""
+                            dnd-selected="models1.selected = item" dnd-type="item.type"
+                            dnd-disable-if="item.type == 'unknown'"
+                            dnd-callback="callback(list,$index, targetList, targetIndex)"
                             dnd-dragstart="dragStart(list,event)" dnd-dragend="dragEnd('dragEnd String',dropEffect)">
+
                             {{item.name}}
                         </li>
                     </ul>
@@ -107,8 +114,16 @@
                 ]
             }
 
-            $scope.dragOver = function (index, external, type, callback) {
-                console.log(index, external, type, callback);
+            $scope.dragStart = function (list, event) {
+                console.log(list, event);
+            }
+
+            $scope.dragOver = function (event, index, type, external, dropEffect, callback) {
+                console.log(event, index, type, external, dropEffect, callback);
+            }
+
+            $scope.dragEnd = function (dragEndString, dropEffect) {
+                console.log(dragEndString, dropEffect);
             }
 
             $scope.drop = function (index, item, external, type) {
@@ -119,12 +134,9 @@
                 console.log(insertedString, index, external, type);
             }
 
-            $scope.dragStart = function (list, event) {
-                console.log(list, event);
-            }
-
-            $scope.dragEnd = function (dragEndString, dropEffect) {
-                console.log(dragEndString, dropEffect);
+            $scope.callback = function (list, $index, targetList, targetIndex) {
+                console.log(list, $index, targetList, targetIndex);
+                return "callback triggered";
             }
 
         }
