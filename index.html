@@ -25,10 +25,8 @@
                     <h2>Drag and Drop</h2>
 
                     <ul dnd-list="list.divSection" dnd-allowed-types="list.allowedTypes"
-                        dnd-disable-if="list.divSection.length >= list.max" dnd-external-sources="true"
-                        dnd-dragover="dragOver(event,index, type, external, dropEffect, callback)" dnd-drop="drop(index,
-                        external, type, callback)" dnd-horizontal-list="true"
-                        dnd-inserted="insert('inserted at', index, external,type)">
+                        dnd-disable-if="list.divSection.length >= list.max" dnd-external-sources="true" dnd-dragover=""
+                        dnd-drop="" dnd-horizontal-list="true" dnd-inserted="">
                         <!-- dnd-dragover="dragOver(event,index,  type, external,  dropEffect, callback)"
                         dnd-drop="drop(index, external, type, callback)"
                         dnd-inserted="insert('inserted at', index, external,type)" -->
@@ -126,8 +124,8 @@
                 console.log(dragEndString, dropEffect);
             }
 
-            $scope.drop = function (index, item, external, type) {
-                console.log(index, item, external, type);
+            $scope.drop = function (index, item, external) {
+                console.log(index, item, external);
             }
 
             $scope.insert = function (insertedString, index, external, type) {
