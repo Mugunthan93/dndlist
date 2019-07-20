@@ -12,8 +12,6 @@
     <script
         src="https://cdnjs.cloudflare.com/ajax/libs/angular-drag-and-drop-lists/2.1.0/angular-drag-and-drop-lists.js">
     </script>
-
-    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
@@ -21,6 +19,7 @@
 
         <div class="col-md-12">
             <div class="row">
+<<<<<<< HEAD
                 <div ng-repeat="list in models1.lists" class="nestedDemo simpleDemo typesDemo">
                     <h2>Drag and Drop</h2>
 
@@ -42,6 +41,14 @@
                     </ul>
                     <div></div>
                     <div class="clearfix"></div>
+=======
+                <div ng-repeat="">
+                    <ul>
+                        <li>
+
+                        </li>
+                    </ul>
+>>>>>>> parent of 12214a4... Nested container,simpleDemo,item types are include
                 </div>
             </div>
         </div>
@@ -56,62 +63,83 @@
 
         function DNDController($scope) {
 
-            $scope.models1 = {
+            $scope.models = {
+                selected: null,
+                lists: {
+                    "A": [{
+                        "label": "Item A1"
+                    }]
+                }
+            }
+
+            $scope.models2 = {
                 selected: null,
                 lists: [{
-                        "allowedTypes": ["div"],
-                        "max": 8,
-                        divSection: [{
-                                "name": "div1",
-                                "type": "div"
+                        label: "Men",
+                        allowedTypes: ['man'],
+                        max: 4,
+                        people: [{
+                                name: "Bob",
+                                type: "man"
                             },
                             {
-                                "name": "div2",
-                                "type": "div"
+                                name: "Charlie",
+                                type: "man"
                             },
                             {
-                                "name": "div3",
-                                "type": "div"
+                                name: "Dave",
+                                type: "man"
                             }
                         ]
                     },
                     {
-                        "allowedTypes": ["span", "div"],
-                        "max": 8,
-                        divSection: [{
-                                "name": "span1",
-                                "type": "span"
+                        label: "Women",
+                        allowedTypes: ['woman'],
+                        max: 4,
+                        people: [{
+                                name: "Alice",
+                                type: "woman"
                             },
                             {
-                                "name": "div4",
-                                "type": "div"
+                                name: "Eve",
+                                type: "woman"
                             },
                             {
-                                "name": "span2",
-                                "type": "span"
+                                name: "Peggy",
+                                type: "woman"
                             }
                         ]
                     },
                     {
-                        "allowedTypes": ["span"],
-                        "max": 8,
-                        divSection: [{
-                                "name": "span3",
-                                "type": "span"
+                        label: "People",
+                        allowedTypes: ['man', 'woman'],
+                        max: 6,
+                        people: [{
+                                name: "Frank",
+                                type: "man"
                             },
                             {
-                                "name": "sapn4",
-                                "type": "span"
+                                name: "Mallory",
+                                type: "woman"
                             },
                             {
-                                "name": "span5",
-                                "type": "span"
+                                name: "Alex",
+                                type: "unknown"
+                            },
+                            {
+                                name: "Oscar",
+                                type: "man"
+                            },
+                            {
+                                name: "Wendy",
+                                type: "woman"
                             }
                         ]
                     }
                 ]
             }
 
+<<<<<<< HEAD
             $scope.dragStart = function (list, event) {
                 console.log(list, event);
             }
@@ -135,6 +163,116 @@
             $scope.callback = function (list, $index, targetList, targetIndex) {
                 console.log(list, $index, targetList, targetIndex);
                 return "callback triggered";
+=======
+            $scope.models3 = {
+                selected: null,
+                templates: [{
+                        type: "item",
+                        id: 2
+                    },
+                    {
+                        type: "container",
+                        id: 1,
+                        columns: [
+                            [],
+                            []
+                        ]
+                    }
+                ],
+                dropzones: {
+                    "A": [{
+                            "type": "container",
+                            "id": 1,
+                            "columns": [
+                                [{
+                                        "type": "item",
+                                        "id": "1"
+                                    },
+                                    {
+                                        "type": "item",
+                                        "id": "2"
+                                    }
+                                ],
+                                [{
+                                    "type": "item",
+                                    "id": "3"
+                                }]
+                            ]
+                        },
+                        {
+                            "type": "item",
+                            "id": "4"
+                        },
+                        {
+                            "type": "item",
+                            "id": "5"
+                        },
+                        {
+                            "type": "item",
+                            "id": "6"
+                        }
+                    ],
+                    "B": [{
+                            "type": "item",
+                            "id": 7
+                        },
+                        {
+                            "type": "item",
+                            "id": "8"
+                        },
+                        {
+                            "type": "container",
+                            "id": "2",
+                            "columns": [
+                                [{
+                                        "type": "item",
+                                        "id": "9"
+                                    },
+                                    {
+                                        "type": "item",
+                                        "id": "10"
+                                    },
+                                    {
+                                        "type": "item",
+                                        "id": "11"
+                                    }
+                                ],
+                                [{
+                                        "type": "item",
+                                        "id": "12"
+                                    },
+                                    {
+                                        "type": "container",
+                                        "id": "3",
+                                        "columns": [
+                                            [{
+                                                "type": "item",
+                                                "id": "13"
+                                            }],
+                                            [{
+                                                "type": "item",
+                                                "id": "14"
+                                            }]
+                                        ]
+                                    },
+                                    {
+                                        "type": "item",
+                                        "id": "15"
+                                    },
+                                    {
+                                        "type": "item",
+                                        "id": "16"
+                                    }
+                                ]
+                            ]
+                        },
+                        {
+                            "type": "item",
+                            "id": 16
+                        }
+                    ]
+                }
+>>>>>>> parent of 12214a4... Nested container,simpleDemo,item types are include
             }
 
         }
